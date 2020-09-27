@@ -1,0 +1,22 @@
+server:
+  port: 8120
+  
+spring:  cloud:    gateway:      routes:      - id: productService
+        uri: lb://product-service
+        predicates:          - Path=/product/**
+          
+      - id: taService
+        uri: lb://my-service
+        predicates:
+          - Path=/tax/**
+          
+      - id: discountService
+        uri: lb://discount-service        predicates:          - Path=/discount/**              application:    name: apigateway-service
+    
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+    
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka          
