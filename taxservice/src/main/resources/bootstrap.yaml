@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: my-service
+    
+  profiles:
+    active: development
+    
+  cloud:
+    config:
+      uri: http://localhost:8110
